@@ -1,5 +1,6 @@
 
 import './App.css'
+import { Doctoer } from './componnents/Doctors/Doctoer'
 import DrawerAppBar from './componnents/Header'
 import { Home } from './componnents/Home/Home'
 import { MainLayout } from './componnents/MainLayout'
@@ -13,6 +14,7 @@ function App() {
   const router=createBrowserRouter(createRoutesFromElements(
   <Route element={<MainLayout/>}>
     <Route path='/' element={<Home/>}/>
+    <Route path='doctors' element={<Doctoer/>}/>
   </Route>
     ))
   return(
