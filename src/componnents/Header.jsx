@@ -14,9 +14,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import logo from '../assets/Logo/Landie.svg'
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Emergency', ' Doctor ', 'Pateint'];
 
 function Header(props) {
   const { window } = props;
@@ -29,7 +30,7 @@ function Header(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ mt: 2 }}>
-        MUI
+        <img src={logo} alt="" style={{height:30}}/>
       </Typography>
       <Divider />
       <List>
@@ -47,12 +48,12 @@ function Header(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex ',m:0}}>
+    <Box sx={{ display: 'flex ',m:0,background:"green"}}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" sx={{bgcolor:'#FFFFFF'}}>
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="#FFFFFF"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -65,11 +66,11 @@ function Header(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            <img src={logo} alt="" />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+              <Button key={item} sx={{ color: '#FFF',bgcolor:'#1B263B',borderRadius:'0.6rem',mr:1 ,padding:"0.5rem 3rem"}}>
                 {item}
               </Button>
             ))}
@@ -93,7 +94,7 @@ function Header(props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{h:7}}>
+      <Box component="main" sx={{h:7 }}>
         <Toolbar />
    
       </Box>
