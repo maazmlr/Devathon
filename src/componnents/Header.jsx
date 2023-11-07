@@ -15,6 +15,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import logo from '../assets/Logo/Landie.svg'
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 const navItems = ['Emergency', ' Doctor ', 'Pateint'];
@@ -29,7 +30,7 @@ function Header(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ mt: 2 }}>
+      <Typography variant="h6" sx={{ pt: 2 }}>
         <img src={logo} alt="" style={{height:30}}/>
       </Typography>
       <Divider />
@@ -48,9 +49,9 @@ function Header(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex ',m:0,background:"green"}}>
+    <Box sx={{ display: 'flex ',m:0}}>
       <CssBaseline />
-      <AppBar component="nav" sx={{bgcolor:'#FFFFFF'}}>
+      <AppBar component="nav" sx={{background:'transparent'}}>
         <Toolbar>
           <IconButton
             color="#FFFFFF"
@@ -70,9 +71,9 @@ function Header(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#FFF',bgcolor:'#1B263B',borderRadius:'0.6rem',mr:1 ,padding:"0.5rem 3rem"}}>
+           <NavLink to={`/${item.toLowerCase()}`}>  <Button key={item} sx={{ color: '#FFF',bgcolor:'#1B263B',borderRadius:'0.6rem',mr:1 ,padding:"0.5rem 3rem"}}>
                 {item}
-              </Button>
+              </Button></NavLink> 
             ))}
           </Box>
         </Toolbar>
@@ -94,7 +95,7 @@ function Header(props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{h:7 }}>
+      <Box component="main" sx={{h:7,mb:3 }}>
         <Toolbar />
    
       </Box>

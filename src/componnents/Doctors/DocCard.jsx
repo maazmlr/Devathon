@@ -1,35 +1,43 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import ReactStars from "react-stars";
 
 export default function DocCard() {
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
+
   return (
-    <Card sx={{ maxWidth: 300,bgcolor:'hotpink',boxShadow:'5px 2px #888888', mt:3, m:2}}>
-      <CardMedia
-        sx={{ height: 200 }}
-        image="data:image/jpeg;base64,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"
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h4" component="div">
-          Name:dr najam sethi ab
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          Category:dermatolisgist
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          Days:tue,thu,Wed
-        </Typography>
-       
-      </CardContent>
-      <CardActions>
-        <Button >Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <div className="flip-card">
+      <div className="flip-card-inner">
+        <div className="flip-card-front">
+          <img
+            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAH0AvAMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAACAwEEBQAGB//EADQQAAICAQMCBAQEBQUBAAAAAAECAAMRBBIhBTETQVFhBiJxgRRCobEyUpHB8BUzgtHhQ//EABkBAQADAQEAAAAAAAAAAAAAAAABAgQDBf/EACIRAQEAAgICAQUBAAAAAAAAAAABAhEDBBIxIRMiMjNBI//aAAwDAQACEQMRAD8A86mm9paqoltKOO0elPtNjzyqqOI0UiWUr4jlrgUxRC8GXPDnbPaBUFMYtIEtLXDCQKZqE7whLhSRsgVRUBKOo6toNPY1Zt3urBWFY3bSfWVvjDqN2i09Gk0ZK6rVvsVx3UeZHvyB95tfC/wxo9JpFV6/EtPLljkZ/v8AWZ+bn+ndT219frfU+b6eeo+I9FZcq3o1KOcLaTlfofSb61ggEcg+YlT4t+FqaNHdbol2o7bra+4B/mHp7yt8K32KD0/UZLVoGrJ81/zErxdjyvjV+x1fCeWLWNMjwRL3hyPDmpiVRSJ3giXAknw4NKJoneBLwrheF7QaZrUCKOnE1WqizVAy204iTpue012q9os08waVKkj1qk1LLKrCClrjAnEYEhbYCtsjbzH7ZxSAFaw9sJFhYhMhBXmFsjNvMnbxIHiviWqy34p6cFGQqZUDnzyePsJv9I6pq/HQVLq3pLbW8alQB7jHOPrKfXK303W9BrtpNe1kYjyI5/b9ptavrFZpQaVaDaCCyPaKyw+88zsX/R7XUm+KaR1vqOqq1LUWpcdMeGNVAfd69z2+0890VGHU9KwDlUrsrLFSOM5GfTieu/1RMI960qHbArFgdgT5zP0gR+q9RsrHyF0x9dvP7CV4v2Rfsfqu13ZI2x2MyNs9V4harzC2wwsLEBQSGFEMLC2wElIBSWdsjbCVU1wDXLm2AVhDMrWPVYFSywBCqMSVEKcO8JdtnFYxZxWAsCFiFidiAOJIE49oSQE6zSV6vTtTZ2YcEflPrMPo+sps1H4W+xKtTpnatXbvgHBAPpxNrqept0tdK6enxdTqGK01ngHHdj6KPM+4HczzWv6G+oU3Di7cSxHHJ5Mw9vx+HpdHym3qdXbSmmZkuW29htQqMn7RXTtKdPS2/HiWNufnOPID7ACVujaT8Lp6wwLuB5d2PpNh6Xr1A07MhtZS9ag4LKuAxx7bl/qJHUk3at3crcZIDE7EICTib3mBAk4kiHjiAAEPE7EMDiEgxIxGYkYgBtgkRuJ2JAyKxLCiKQRyyVI4icBJxCUQlwh+UgCdiBEgiFI94BVUvc2ytSzGaum6VXWga87m9PISx0/TpVVt/P3Pv7iWk4J3HgHmc8smjDjkm6yumUJrNRrda3KOTp6B2211kqfuXDH7L6Sh1FG0twQaR7x/9HqxkDyOD3mr8NsW6HonIwXpWw/8vmz+st6pAyiwAZHmPMSlxmU1lHaW4/MebA1yODotDVhDnN9mN3sAM4+p/oZodTR6tPo+oWVGu3TalCV3ZwrnYwyPLDE/UCXdMm+4E9l5jLNXVdfdo6Al9tYHjLnisMON3154jxmM1IXK5XdRqNFRc5fGD5lfOZ2q0T0LuB3J2J8x9Y7Q3X09Uv6fqLDapqF1LsOQMkMpPng4x58zTZAybWGRjGJaZWOeWErzgEOHfV4NzV+h4PrAE6s+tJAhyAJMDgJ2JIhY4kAJEKQYGUvaMWAnaMWSpEmSsjEkQkY7zjIkk8QBMmobrFHvBMKni1Ce24RSe3oNF8tYpb+Kpiqn27j9P2kdQtNWi1dnYilmH1wYzbmwh8fMPlYfpM34j1C/6Y9RsRLbT4Y35ABJ8/b/ALnBtaWioGl02noTgVVKg9sDEcyEZNYGT3B7NE6K+y7TV2Xqq2MPmC9pZzxAr0phdqgrnlj5/SQtFdGrDVoiiyvacLg5U8c/cyxwBF3sAqWeaMD9ux/QmAi5MaxGU4JrK/bcufvLIlTUWK2q3KwZakOdvPOQf2EsV2K+MEZ81zyI3/E6utszqi41X1USoJpdWTitx9JnATrj6Zc/yGvaTIEkSVUiFIxJhITIhGDBWUvaMWJEYhkuZkkThyJBhIp05ZxgCZ2cc+k4wRzkGER6lQXrUowBwODMrr2h/E1V3kHdUwLpjO4dj/ntLfTNVXZpKhbYosxjGeZbtVWQo7EhuMDznCt0ZtGqCKK1xhR2l+hm3N3weRMv8PVoTusr2gdnbmbqnOOPKUxyuXt0zxk9FWPge57RdgZuMxzkZ5xnykZXtxLubzpL63Vu1S4rRtqsq/xEdz9Jr9O0Q0+6wvvZuCf87/tLW9VGCAPpFqq+IXr4b8yjsZznH92663luvGK/VX+RE9TmZolnqFm/UEfyjErCacfTDn85CEIQIQllTBOkCSZCQmDmSYOYQyQcxi8RCGOUyXM5DJaAsKEuWSTBBnEwOgn2nZ5nGSL/AEXUg120ttFiWHBPoeRNPcUGbtUQvoBtH9Z5l0YndW5Rx5qSMynZ1HSUXFOoWP4o/nvB4+4nK46acOSWaezbU6dqXXeWXHOTnMteKiIrFgBjz9J4h+udOWtlXZgcHN3aUrutLfZtHUWbH5K27fuZGl/N778Vp7B/uKfv2gHwH/htUH6z58/UUDgmy3j824nn3lqp01Owo2UOSxBP6Ro29k9GBuS9R9W4lL8bi7YL63KnvUckfWZGj0OisvVXBZjzg+YmhfWlVhStQq4GAOwkyK55XGbG9niOzHuTIEWDCBnRn2ZCEBeYUA5GZGZGZCUkwDILQcyUMhTGqZXUximSotKZOYtDxCzISKQTOzxBbtJQ7PMLMUDzGCBx5nnrOgv1rqt+qa4qiPgLtznHE32MvdCpUaYN/McmUzduGbteUt+GTpd7WP4iscn5cYEv9P6BVTj5cnHBnptdUhrxjuDEaP8A21Ugfw5zKRo0oX9JrasAIOI3S6EhQFRQq8Ees0CxWwJ5d42gbmYH1HP9YNM/TdNNWra3f5jaMdhLXUU2WIR5r/f/ANl7YNw+sT1VR+HQ+Yf+xk435V5J9rNkwRJE6MpimMzEiHniEpJkZgkwcwJYxe6cxiieYH//2Q=="
+            alt=""
+          />
+          <p className="title">Muhammad Maaaz</p>
+          <p>Cardiologist </p>
+          <ReactStars
+            count={5}
+            onChange={ratingChanged}
+            value={4}
+            size={24}
+            color2={"#ffd700"}
+          />{" "}
+          <span>(120)</span>
+        </div>
+        <div className="flip-card-back">
+          <p className="title"><WatchLaterIcon/>:12:30pm-2:30pm</p>
+          <p><CalendarMonthIcon/>:[tue,wed,thu]</p>
+        </div>
+      </div>
+    </div>
   );
 }

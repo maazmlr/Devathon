@@ -1,17 +1,32 @@
-import React from 'react'
-import Buttons from './Buttons'
+import React from "react";
+import Buttons from "./Buttons";
+import { Button } from "@mui/material";
+import { Hero } from "./Hero";
+import img from "../../assets/img.jpg";
+import { Spinner } from "./Spinner";
 
 export const Home = () => {
   return (
-    <div style={{height:"89vh",backgroundColor:'lightblue', display:'flex' ,flexWrap:'wrap',justifyContent:'center',alignItems:'center'}}>
-        {/* <p style={{width:'100%',textAlign:'center',fontFamily:'Roboto',fontWeight:'800',fontSize:80}}> Where pateint meets doctor     </p> */}
-        <p style={{width:'90%',textAlign:'center',fontFamily:'Roboto',fontWeight:'800',fontSize:80}}> Where pateint meets doctor     </p>
-        <p style={{width:'90%',textAlign:'center',fontFamily:'Roboto',fontWeight:'800',fontSize:20}}> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat 
-
-</p>
-        <div className="holder">
-        <Buttons/></div>
-    </div>
-
-  )
-}
+    <>
+      <div style={{ marginTop: "2rem" }} className=" flex justify-between	  ">
+        <div className="holder w-2/4 p-12">
+          <p className="home-heading">Healthity</p>
+          <p className="home-para">
+            Introducing HealthLink, a groundbreaking platform designed to bridge
+            the gap between volunteer healthcare professionals and underserved
+            communities, offering virtual medical consultations and essential
+            healthcare services remotely.
+          </p>
+          <Button className="about-us-btn" sx={{ padding: "0.5rem 2rem" }}>
+            About US
+          </Button>
+        </div>
+        <Spinner/>
+        
+      </div>
+      <div className="flex justify-evenly py-20" style={{ background: "#CCE1FA",opacity:'0.7' }}>
+        <Hero />
+      </div>
+    </>
+  );
+};

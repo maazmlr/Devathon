@@ -14,12 +14,13 @@ function App() {
   const router=createBrowserRouter(createRoutesFromElements(
   <Route element={<MainLayout/>}>
     <Route path='/' element={<Home/>}/>
-    <Route path='doctors' element={<Doctoer/>}/>
+    <Route path='emergency' element={<Doctoer/>}/>
   </Route>
     ))
   return(
     <RouterProvider router={router}/>
-  )
+   
+    )
   
 }
 
