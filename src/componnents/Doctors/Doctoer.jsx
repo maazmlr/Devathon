@@ -14,7 +14,7 @@ export const Doctoer = () => {
   }, []);
   console.log(data)
   const [searchParams, setSearchParams] = useSearchParams();
-  let typeFileter=searchParams.get('type').toLocaleLowerCase();
+  let typeFileter=searchParams.get('type')?.toLocaleLowerCase();
 
   const display=typeFileter ? data.filter(value=>value.category.toLowerCase()===typeFileter):data;
   console.log(display)
