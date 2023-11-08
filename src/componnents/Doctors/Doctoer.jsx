@@ -4,6 +4,7 @@ import Buttons from "./butonns";
 import axios from "axios";
 import BasicSelect from "./butonns";
 import { useSearchParams } from 'react-router-dom';
+import { TextField } from "@mui/material";
 
 
 export const Doctoer = () => {
@@ -11,11 +12,15 @@ export const Doctoer = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/doctors").then((res) => setData(res.data));
   }, []);
-
+  console.log(data)
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get('type'))
+  let typeFileter=searchParams.get('type').toLocaleLowerCase();
 
-  const elements = data.map((value) => (
+  const display=typeFileter ? data.filter(value=>value.category.toLowerCase()===typeFileter):data;
+  console.log(display)
+
+
+  const elements = display.map((value) => (
     <DocCard
       key={value._id}
       name={value.name}
@@ -31,7 +36,7 @@ export const Doctoer = () => {
     category=[...category]
   return (
     <>
-      <div className="button-container">
+      <div className="button-container ">
         <BasicSelect element={category}/>
       </div>
       <div

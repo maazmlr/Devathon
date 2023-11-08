@@ -27,7 +27,7 @@ export default function BasicSelect({element}) {
   const elements=element.map((v,i)=><MenuItem onClick={()=>setSearchParams(genNewSearchParamString("type",v))} key={i} value={v}>{v}</MenuItem>)
   return (
     <Box sx={{ minWidth: 123 }}>
-      <FormControl className='w-2/6 '>
+      <FormControl className='w-2/6 flex justify-end ' style={{backgroundColor:'#EEFD'}}>
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select
           labelId="demo-simple-select-label"
