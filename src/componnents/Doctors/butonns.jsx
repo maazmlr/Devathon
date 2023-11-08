@@ -1,29 +1,33 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
-const buttons = [
-  <Button key="one">One</Button>,
-  <Button key="two">Two</Button>,
-  <Button key="three">Three</Button>,
-];
+export default function BasicSelect() {
+  const [age, setAge] = React.useState('');
 
-export default function Buttons() {
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          '& > *': {
-            m: 1,
-          },
-        }}
-      >
-         <ButtonGroup size="large" aria-label="large button group">
-        {buttons}
-      </ButtonGroup>
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  return (
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl className='w-2/6 '>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={age}
+          label="Age"
+          onChange={handleChange}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
     </Box>
   );
 }
