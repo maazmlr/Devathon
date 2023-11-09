@@ -31,7 +31,7 @@ function Header(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ pt: 2 }}>
-        <img src={logo} alt="" style={{height:30}}/>
+      <NavLink to={'/'}><img  src={logo} alt="" style={{height:30}} /> </NavLink>
       </Typography>
       <Divider />
       <List>
@@ -67,7 +67,7 @@ function Header(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            <img src={logo} alt="" />
+           <NavLink to={'/'}><img src={logo} alt="" /> </NavLink> 
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (

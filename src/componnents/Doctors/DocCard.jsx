@@ -8,8 +8,9 @@ import Typography from "@mui/material/Typography";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ReactStars from "react-stars";
+import { NavLink } from "react-router-dom";
 
-export default function DocCard({name,rating,totalRating,timing,days,category,img}) {
+export default function DocCard({name,rating,totalRating,timing,days,category,img,id}) {
 
 
   return (
@@ -39,6 +40,8 @@ export default function DocCard({name,rating,totalRating,timing,days,category,im
           <Button variant="contained" className="w-2/3 ml-4  ">Book Appointment</Button>
           <Button variant="contained" className="w-2/3">See Details</Button>
           </div>
+
+      
 
 
         </div>

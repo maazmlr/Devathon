@@ -3,7 +3,7 @@ import DocCard from "./DocCard";
 import Buttons from "./butonns";
 import axios from "axios";
 import BasicSelect from "./butonns";
-import { useSearchParams } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import { TextField } from "@mui/material";
 
 
@@ -21,7 +21,7 @@ export const Doctoer = () => {
 
 
   const elements = display.map((value) => (
-    <DocCard
+   <NavLink to={` ${value._id}`}> <DocCard
       key={value._id}
       name={value.name}
       category={value.category}
@@ -30,7 +30,9 @@ export const Doctoer = () => {
       timing={value.timing}
       days={value.days.toString()}
       img={value.img_url}
+      id={value._id}
     />
+    </NavLink>
   ));
     let category=(new Set(data.map(value=>value.category)))
     category=[...category]

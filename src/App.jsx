@@ -1,6 +1,7 @@
 
 import './App.css'
 import { Doctoer } from './componnents/Doctors/Doctoer'
+import { SpecificDoc } from './componnents/Doctors/SpecificDoc'
 import DrawerAppBar from './componnents/Header'
 import { Home } from './componnents/Home/Home'
 import { MainLayout } from './componnents/MainLayout'
@@ -15,6 +16,7 @@ function App() {
   <Route element={<MainLayout/>}>
     <Route path='/' element={<Home/>}/>
     <Route path='emergency' element={<Doctoer/>}/>
+    <Route path='emergency/:id' element={<SpecificDoc/>}/>
   </Route>
     ))
   return(
