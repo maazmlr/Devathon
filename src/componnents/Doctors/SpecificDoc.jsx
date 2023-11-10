@@ -14,22 +14,25 @@ export const SpecificDoc = () => {
       .then(res=>setData(res.data))
     
     },[])
-    console.log(data)
   return (
     <>
     <Button variant="contained">Back to Doctors</Button>
     
     <div className="card card-side bg-base-100 shadow-xl my-10">
-  <figure><img src="https://media.istockphoto.com/id/1412215823/photo/portrait-of-confident-black-doctor.webp?b=1&s=170667a&w=0&k=20&c=OYMxE7FwQja9v4UFYWW8cX4vcLZj-vN2d12c03-kzBU=" alt="Movie"/></figure>
-  <div className="card-body">
+  <figure className=''><img src={data.img_url} alt="Movie" className='w-2/2 h-full	'/></figure>
+  <div className="card-body flex ">
   <div className=" flex justify-start">
       <h1 className='text-gray-900 text-7xl dark:text-white mb-10'>{data.category}</h1>
     </div>
+    <div className=' space-y-10 '>
+
     <h2 className="card-title">Name :{data.name}</h2>
     <h2 className="card-title"><WatchLaterIcon/> :{data.timing}</h2>
     <h2 className="card-title"><CalendarMonthIcon/> : {data.days}</h2>
 
-    <div className="card-actions justify-end">
+    </div>
+
+    <div className="card-actions justify-end mt-   	">
       <button className="btn btn-primary">Book Appointment</button>
     </div>
   </div>

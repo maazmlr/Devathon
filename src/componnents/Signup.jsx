@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 
 
@@ -58,8 +59,13 @@ export default function SignUp() {
         password: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit:  (values) => {
+      console.log(JSON.stringify(values, null, 2));
+      axios.post('http://localhost:3000/signup',JSON.stringify(values, null, 2),{
+      headers: {
+        'Content-Type': 'application/json'
+      }})
+      
     },
   });
 

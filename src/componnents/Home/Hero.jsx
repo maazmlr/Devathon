@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Hero = () => {
   return (
-    <div className="hero max-h-screen bg-base-200 	" >
+    <div className="hero max-h-screen  	" >
   <div className="hero-content text-center">
     <div className="max-w-md">
       <h1 className="text-4xl font-bold">Go Health Link Premium</h1>
