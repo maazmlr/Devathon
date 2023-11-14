@@ -37,8 +37,10 @@ export default function DocCard({name,rating,totalRating,timing,days,category,im
           <p className="title"><WatchLaterIcon/>{timing}</p>
           <p><CalendarMonthIcon/>:{days}</p>
           <div className="flex justify-center mt-4">
-          <Button variant="contained" className="w-2/3 ml-4  ">Book Appointment</Button>
-          <Button variant="contained" className="w-2/3">See Details</Button>
+         <NavLink to={`${id}`}><Button variant="contained" className="w-2/3 ml-4  ">See Details</Button></NavLink> 
+         <NavLink to={`/bookDoctor/${id}`}> <Button variant="contained" className="w-2/3">Book Appointment</Button>
+         </NavLink>
+   
           </div>
 
       

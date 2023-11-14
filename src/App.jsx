@@ -1,8 +1,8 @@
 
 import './App.css'
+import DoctorAppointment from './componnents/Doctors/DoctorAppointment'
 import { Doctoer } from './componnents/Doctors/Doctoer'
 import { SpecificDoc } from './componnents/Doctors/SpecificDoc'
-import DrawerAppBar from './componnents/Header'
 import { Home } from './componnents/Home/Home'
 import { MainLayout } from './componnents/MainLayout'
 import SignIn from './componnents/Signin'
@@ -16,9 +16,11 @@ function App() {
   <Route element={<MainLayout/>}>
     <Route path='/' element={<Home/>}/>
     <Route path='/signup' element={<Signup/>}/>
+    <Route path='/signin' element={<SignIn/>}/>
+    <Route path='bookDoctor/:id' element={<DoctorAppointment/>}/>
 
-    <Route path='emergency' element={<Doctoer/>}/>
-    <Route path='emergency/:id' element={<SpecificDoc/>}/>
+    <Route path='doctor' element={<Doctoer/>}/>
+    <Route path='doctor/:id' element={<SpecificDoc/>}/>
   </Route>
     ))
   return(

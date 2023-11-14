@@ -18,7 +18,7 @@ import logo from '../assets/Logo/Landie.svg'
 import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ['Emergency', ' Doctor ', 'Pateint'];
+const navItems = ['Emergency', 'Doctor', 'Pateint'];
 
 function Header(props) {
   const { window } = props;

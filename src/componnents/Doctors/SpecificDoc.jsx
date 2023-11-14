@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import BackButton from './BackButton';
 
 
 export const SpecificDoc = () => {
@@ -16,8 +17,7 @@ export const SpecificDoc = () => {
     },[])
   return (
     <>
-    <Button variant="contained">Back to Doctors</Button>
-    
+    <BackButton/>    
     <div className="card card-side bg-base-100 shadow-xl my-10">
   <figure className=''><img src={data.img_url} alt="Movie" className='w-2/2 h-full	'/></figure>
   <div className="card-body flex ">
