@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const validationSchema = Yup.object().shape({
   fullName: Yup.string().required('Full Name is required'),
@@ -27,6 +29,23 @@ const initialValues = {
 };
 
 const AppointmentForm = () => {
+
+    const {id}=useParams();
+    const [data,setData]=useState({})
+
+    useEffect(()=>{
+
+      axios.get(`http://localhost:3000/oneDoc/${id}`)
+      .then(res=>setData(res.data))
+
+
+    },[])
+
+    console.log(data.days?.map(v=>v));
+    const days=data.days?.map((v,i)=>            <option key={i} value={v}>{v}</option>)
+
+
+
   const onSubmit = (values, { setSubmitting }) => {
     // Handle form submission logic here
     console.log(values);
@@ -39,17 +58,18 @@ const AppointmentForm = () => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      <Form>
+      <Form className='form bg-white border-black	border-4 h-auto	 rounded-lg flex flex-wrap'>
         <div>
           <label htmlFor="fullName">Full Name:</label>
           <Field type="text" id="fullName" name="fullName" />
-          <ErrorMessage name="fullName" component="div" />
+          <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="fullName" component="div" />
         </div>
+       
 
         <div>
           <label htmlFor="dateOfBirth">Date of Birth:</label>
           <Field type="date" id="dateOfBirth" name="dateOfBirth" />
-          <ErrorMessage name="dateOfBirth" component="div" />
+          <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="dateOfBirth" component="div" />
         </div>
 
         <div>
@@ -60,13 +80,13 @@ const AppointmentForm = () => {
             <option value="female">Female</option>
             <option value="other">Other</option>
           </Field>
-          <ErrorMessage name="gender" component="div" />
+          <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="gender" component="div" />
         </div>
 
         <div>
-          <label htmlFor="phoneNumber">Phone Number:</label>
-          <Field type="tel" id="phoneNumber" name="phoneNumber" />
-          <ErrorMessage name="phoneNumber" component="div" />
+          <label className='' htmlFor="phoneNumber">Phone Number:</label>
+          <Field  type="tel" id="phoneNumber" name="phoneNumber"  />
+          <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="phoneNumber" component="div" />
         </div>
 
         <div>
@@ -78,19 +98,28 @@ const AppointmentForm = () => {
         <div>
           <label htmlFor="address">Address:</label>
           <Field type="text" id="address" name="address" />
-          <ErrorMessage name="address" component="div" />
+          <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="address" component="div" />
+        </div>
+        <div>
+          <label htmlFor="fullName">Doctor Name : </label>
+          <Field type="text" id="fullName" name="fullName" value={data.name} />
+          {/* <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="fullName" component="div" /> */}
         </div>
 
         <div>
           <label htmlFor="preferredDateAndTime">Preferred Date and Time:</label>
-          <Field type="text" id="preferredDateAndTime" name="preferredDateAndTime" />
-          <ErrorMessage name="preferredDateAndTime" component="div" />
+          <Field as="select" id="preferredDateAndTime" name="preferredDateAndTime">
+            <option value="">Select day</option>
+            {days}
+            
+          </Field>          
+          <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="preferredDateAndTime" component="div" />
         </div>
 
         <div>
           <label htmlFor="reasonForAppointment">Reason for Appointment:</label>
           <Field as="textarea" id="reasonForAppointment" name="reasonForAppointment" />
-          <ErrorMessage name="reasonForAppointment" component="div" />
+          <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="reasonForAppointment" component="div" />
         </div>
 
         <div>
@@ -101,7 +130,7 @@ const AppointmentForm = () => {
             <option value="follow-up">Follow-up</option>
             {/* Add more options as needed */}
           </Field>
-          <ErrorMessage name="typeOfAppointment" component="div" />
+          <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="typeOfAppointment" component="div" />
         </div>
 
         <div>

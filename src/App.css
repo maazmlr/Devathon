@@ -32,12 +32,7 @@ body {
     font-weight: 800;
 } 
 
-@media only screen and (max-width: 600px) {
-   *{
-    margin: 0;
-    font-size: 8px;
-   }
-  }
+
 
 
 
@@ -438,10 +433,40 @@ body {
     }
   }
   
+/* ----------------Form----------------- */
 
+.form div{
+ width: auto;
+ flex: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+  /*demo*/
+  margin-bottom: 10px;
+}
+.form div > label{
+  font-size: 2rem;
+  font-family: monospace;
+}
 
+.form > div >input,.form > div >select,.form > div >textarea{
+  background-color: gainsboro;
 
+  max-width: 15rem;
+  height: 3rem;
+  font-size: 2rem;
 
-
-
+}
+.form > div >input:focus,.form > div >select:focus,.form > div >textarea:focus{
+  outline:none;
   
+}
+.form> div > button{
+  background-color: #4a698f;
+  width: 10rem ;
+  height: 4rem;
+}
+
+@media only screen and (max-width: 600px) {
+  *{
+   margin: 0;
+   font-size: 8px;
+  }
+ }

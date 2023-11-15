@@ -10,7 +10,7 @@ const DoctorAppointment = () => {
         <BackButton/>
 
         <div className="appointment">
-            <h2 className='text-gray-900 text-7xl dark:text-white bg-white	 text-center	'>Appointment Details </h2>
+            <h2 className='text-black-900  text-7xl dark:text-black bg-white	 text-center	'>Appointment Details </h2>
             <AppointmentForm/>
         </div>
     </div>
