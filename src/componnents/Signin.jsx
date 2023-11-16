@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -53,11 +54,18 @@ export default function SignIn() {
     const formik = useFormik({
         initialValues: {
           email: '',
-          password: 'd',
+          password: '',
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
-          alert(JSON.stringify(values, null, 2));
+        onSubmit:async (values) => {
+          
+          
+          axios.post("http://localhost:3000/signin",(JSON.stringify(values, null, 2)),{ headers: {
+            'Content-Type': 'application/json'
+          }}).then(res=>{
+            console.log(res)
+          });
+        
         },
       });
     
