@@ -15,6 +15,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Alerter from './Alert';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 
@@ -51,6 +55,28 @@ const validationSchema = yup.object({
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const [formData,setFormData]=useState({})
+  const [response,setResponse]=useState();
+  const  navigate=useNavigate()
+
+
+  
+
+    useEffect(()=>{
+      axios.post('http://localhost:3000/signup',JSON.stringify(formData, null, 2),{
+        headers: {
+          'Content-Type': 'application/json'
+        }}).then(res=>  setResponse(res))
+        
+
+    },[formData]);
+
+
+    useEffect(()=>{
+       if(response?.status==201){
+         navigate('/signin')
+       }
+     },[response])
 
     const formik = useFormik({
         initialValues: {
@@ -60,13 +86,10 @@ export default function SignUp() {
     },
     validationSchema: validationSchema,
     onSubmit:  (values) => {
-      console.log(JSON.stringify(values, null, 2));
-      axios.post('http://localhost:3000/signup',JSON.stringify(values, null, 2),{
-      headers: {
-        'Content-Type': 'application/json'
-      }})
-      
-    },
+         
+            setFormData(values)
+         
+      },
   });
 
 
@@ -74,14 +97,7 @@ export default function SignUp() {
 
 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -179,12 +195,20 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <NavLink to={'/signin'} variant="body2">
                   Already have an account? Sign in
-                </Link>
+                </NavLink>
               </Grid>
             </Grid>
           </Box>
+          {response ? (
+              response?.status===201 ? <Alerter msg={'sigup Succesful'} severity={'success'}/>
+              :<Alerter msg={'network error'} severity={'error'}/>
+          )
+          :null}
+          
+          
+          
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>

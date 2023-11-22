@@ -18,7 +18,7 @@ import logo from '../assets/Logo/Landie.svg'
 import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ['Emergency', 'Doctor', 'Pateint'];
+const navItems = ['yourApointment', 'Doctor'];
 
 function Header(props) {
   const { window } = props;
@@ -42,6 +42,14 @@ function Header(props) {
             </ListItemButton>
           </ListItem>
         ))}
+        <NavLink to={'./signup'}>
+                    <ListItem disablePadding>
+
+          <ListItemButton onClick={()=>localStorage?.removeItem('uid')}  sx={{textAlign:'center'}}><ListItemText primary="Logout" /></ListItemButton>
+                      </ListItem>
+
+                      </NavLink>
+
       </List>
     </Box>
   );
@@ -71,10 +79,13 @@ function Header(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-           <NavLink to={`/${item.toLowerCase()}`}>  <Button key={item} sx={{ color: '#FFF',bgcolor:'#1B263B',borderRadius:'0.6rem',mr:1 ,padding:"0.5rem 3rem"}}>
+           <NavLink to={`/${item.toLowerCase()}`}> {}<Button  key={item} sx={{ color: '#FFF',bgcolor:'#1B263B',borderRadius:'0.6rem',mr:1 ,padding:"0.5rem 3rem"}}>
                 {item}
               </Button></NavLink> 
             ))}
+             <NavLink to={`/signin`}> {}<Button onClick={()=>localStorage.removeItem('uid')} sx={{ color: '#FFF',bgcolor:'#1B263B',borderRadius:'0.6rem',mr:1 ,padding:"0.5rem 3rem"}}>
+              Logout
+              </Button></NavLink> 
           </Box>
         </Toolbar>
       </AppBar>

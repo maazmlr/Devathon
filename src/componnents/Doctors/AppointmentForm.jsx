@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const validationSchema = Yup.object().shape({
   fullName: Yup.string().required('Full Name is required'),
+
   dateOfBirth: Yup.date().required('Date of Birth is required'),
   gender: Yup.string().required('Gender is required'),
   phoneNumber: Yup.string().required('Phone Number is required'),
@@ -32,14 +33,30 @@ const AppointmentForm = () => {
 
     const {id}=useParams();
     const [data,setData]=useState({})
-
+  const [formData,setFormData]=useState([]);
+  const [change ,setChange]=useState(false)
+  const navigate=useNavigate()
     useEffect(()=>{
 
       axios.get(`http://localhost:3000/oneDoc/${id}`)
-      .then(res=>setData(res.data))
+      .then(res=>setData(res?.data))
 
 
-    },[])
+    },[]);
+
+    useEffect(()=>{
+      const uid=localStorage?.getItem(("uid"));
+     
+      axios.post('http://localhost:3000/appointment',{uid,...formData},{
+        
+        headers: {
+          'Content-Type': 'application/json'
+        }}).then(res => (res.status==200 ? navigate('/'):null) )
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
+    },[formData])
 
     console.log(data.days?.map(v=>v));
     const days=data.days?.map((v,i)=>            <option key={i} value={v}>{v}</option>)
@@ -47,8 +64,14 @@ const AppointmentForm = () => {
 
 
   const onSubmit = (values, { setSubmitting }) => {
-    // Handle form submission logic here
-    console.log(values);
+    const postData=({...values,doctorName:data.name});
+
+    setFormData(postData);
+
+
+ 
+
+
     setSubmitting(false);
   };
 
@@ -101,9 +124,8 @@ const AppointmentForm = () => {
           <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="address" component="div" />
         </div>
         <div>
-          <label htmlFor="fullName">Doctor Name : </label>
-          <Field type="text" id="fullName" name="fullName" value={data.name} />
-          {/* <ErrorMessage className='text-xs text-gray-900 dark:text-red-500 text-center		' name="fullName" component="div" /> */}
+          <label htmlFor="doctorName">Doctor Name : </label>
+          <Field type="text" id="doctorName" name="doctorName" value={data.name} readOnly />
         </div>
 
         <div>
@@ -134,7 +156,7 @@ const AppointmentForm = () => {
         </div>
 
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" >Submit</button>
         </div>
       </Form>
     </Formik>

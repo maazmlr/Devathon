@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Buttons from "./Buttons";
 import { Button } from "@mui/material";
 import { Hero } from "./Hero";
 import img from "../../assets/img.jpg";
 import { Spinner } from "./Spinner";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 export const Home = () => {
-  return (
+  const navigate=useNavigate()
+  useEffect(()=>{
+    const uid = localStorage?.getItem("uid");
+    if(!uid){
+      navigate('/signin')
+    }
+  })
+ return (
     <>
       <div style={{ marginTop: "2rem" }} className=" flex justify-between	  ">
         <div className="holder w-2/4 p-12">
@@ -30,3 +41,4 @@ export const Home = () => {
     </>
   );
 };
+

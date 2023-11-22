@@ -7,8 +7,11 @@ import { Home } from './componnents/Home/Home'
 import { MainLayout } from './componnents/MainLayout'
 import SignIn from './componnents/Signin'
 import  Signup  from './componnents/Signup'
+import UserAppointment from './componnents/Appointments/userAppointment'
 
 import { Route,RouterProvider,createBrowserRouter,createRoutesFromElements } from 'react-router-dom'
+import Alert from './componnents/Alert'
+import Alerter from './componnents/Alert'
 
 function App() {
   
@@ -17,6 +20,7 @@ function App() {
     <Route path='/' element={<Home/>}/>
     <Route path='/signup' element={<Signup/>}/>
     <Route path='/signin' element={<SignIn/>}/>
+    <Route path='/yourApointment' element={<UserAppointment/>}/>
     <Route path='bookDoctor/:id' element={<DoctorAppointment/>}/>
 
     <Route path='doctor' element={<Doctoer/>}/>
@@ -25,8 +29,7 @@ function App() {
     ))
   return(
     <RouterProvider router={router}/>
-   
-    )
+      )
   
 }
 

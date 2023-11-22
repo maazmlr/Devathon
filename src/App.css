@@ -470,3 +470,11 @@ body {
    font-size: 8px;
   }
  }
+
+ .card{
+  background: linear-gradient(to bottom right, #1B263B, #1B263B)
+
+  !important;
+  color: #E1E1E1;
+
+ }

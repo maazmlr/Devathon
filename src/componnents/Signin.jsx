@@ -15,6 +15,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
+import { NavLink, useNavigate } from "react-router-dom";
+import Alerter from "./Alert";
+
 
 function Copyright(props) {
   return (
@@ -34,7 +37,7 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 
 const validationSchema = yup.object({
   email: yup
@@ -50,6 +53,10 @@ const validationSchema = yup.object({
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  let navigate = useNavigate();
+
+  const [error,setError]=React.useState(false)
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -62,7 +69,13 @@ export default function SignIn() {
       headers: {
         'Content-Type': 'application/json'
       }
-     }).then(res=>console.log(res))
+     }).then(res=>{
+      if(res.status===200 && !error){
+        localStorage.setItem('uid',res.data.message?._id);
+        navigate('/'); }
+     
+    
+     })
     },
   });
 
@@ -139,9 +152,9 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <NavLink to={'/signup'} variant="body2">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </NavLink>
               </Grid>
             </Grid>
           </Box>
