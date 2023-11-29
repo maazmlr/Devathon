@@ -63,7 +63,7 @@ export default function SignUp() {
   
 
     useEffect(()=>{
-      axios.post('http://localhost:3000/signup',JSON.stringify(formData, null, 2),{
+      axios.post('https://doctorapp-xkec.onrender.com/signup',JSON.stringify(formData, null, 2),{
         headers: {
           'Content-Type': 'application/json'
         }}).then(res=>  setResponse(res))

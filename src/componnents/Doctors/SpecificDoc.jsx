@@ -11,7 +11,7 @@ export const SpecificDoc = () => {
     const params=useParams()
     const [data,setData]=useState({})
     useEffect(()=>{
-      axios.get(`http://localhost:3000/oneDoc/${params.id}`)
+      axios.get(`https://doctorapp-xkec.onrender.com/oneDoc/${params.id}`)
       .then(res=>setData(res.data))
     
     },[])

@@ -38,7 +38,7 @@ const AppointmentForm = () => {
   const navigate=useNavigate()
     useEffect(()=>{
 
-      axios.get(`http://localhost:3000/oneDoc/${id}`)
+      axios.get(`https://doctorapp-xkec.onrender.com/oneDoc/${id}`)
       .then(res=>setData(res?.data))
 
 
@@ -51,7 +51,7 @@ const AppointmentForm = () => {
         
         headers: {
           'Content-Type': 'application/json'
-        }}).then(res => (res.status==200 ? navigate('/'):null) )
+        }}).then(res => res )
         .catch(error => {
           console.error('Error:', error);
         });

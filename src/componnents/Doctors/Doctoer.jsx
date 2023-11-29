@@ -10,7 +10,7 @@ import { TextField } from "@mui/material";
 export const Doctoer = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3000/doctors").then((res) => setData(res.data));
+    axios.get("https://doctorapp-xkec.onrender.com/doctors").then((res) => setData(res.data));
   }, []);
   console.log(data)
   const [searchParams, setSearchParams] = useSearchParams();

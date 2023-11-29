@@ -10,7 +10,7 @@ const UserAppointment = () => {
     console.log(uid)
 
     useEffect(()=>{
-        axios.get(`http://localhost:3000/userAppointment/${uid}`).then(res=>setAppointments(res.data.appointments))
+        axios.get(`https://doc-app-backend.vercel.app/userAppointment/${uid}`).then(res=>setAppointments(res.data.appointments))
     },[])
 
     const elements=appointments?.map((v,i)=><AppointmentDetails
