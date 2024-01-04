@@ -28,7 +28,7 @@ function Copyright(props) {
       {'Copyright © '}
       <Link color="inherit" href="#">
         Muhammad Maaz
-      </Link>{' '}
+      </Link>{''}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -55,28 +55,10 @@ const validationSchema = yup.object({
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [formData,setFormData]=useState({})
-  const [response,setResponse]=useState();
   const  navigate=useNavigate()
 
+ 
 
-  
-
-    useEffect(()=>{
-      axios.post('https://doctorapp-xkec.onrender.com/signup',JSON.stringify(formData, null, 2),{
-        headers: {
-          'Content-Type': 'application/json'
-        }}).then(res=>  setResponse(res))
-        
-
-    },[formData]);
-
-
-    useEffect(()=>{
-       if(response?.status==201){
-         navigate('/signin')
-       }
-     },[response])
 
     const formik = useFormik({
         initialValues: {
@@ -85,13 +67,28 @@ export default function SignUp() {
         password: '',
     },
     validationSchema: validationSchema,
-    onSubmit:  (values) => {
-         
-            setFormData(values)
+    onSubmit: async (values) => {
+
+    try {
+      const res=await axios.post('https://doctorapp-xkec.onrender.com/signup',values);
+
+      if (res.status==201){
+        alert("signup successful");
+        navigate("/signin")
+      }
+      else{
+        alert("something went wrong ")
+      }
+    } catch (error) {
+        alert(`some thing in carch `)
+      
+    }
+
+      
+
          
       },
   });
-
 
 
 
@@ -105,7 +102,6 @@ export default function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -201,16 +197,12 @@ export default function SignUp() {
               </Grid>
             </Grid>
           </Box>
-          {response ? (
-              response?.status===201 ? <Alerter msg={'sigup Succesful'} severity={'success'}/>
-              :<Alerter msg={'network error'} severity={'error'}/>
-          )
-          :null}
+          
           
           
           
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        <Copyright sx={{ mt: 16 }} />
       </Container>
     </ThemeProvider>
   );

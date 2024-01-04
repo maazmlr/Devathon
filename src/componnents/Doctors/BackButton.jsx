@@ -1,9 +1,10 @@
 import { Button } from '@mui/material'
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const BackButton = () => {
   return (
-    <Button variant="contained">Back to Doctors</Button>
+   <NavLink to={"/doctor"}> <Button variant="contained">Back to Doctors</Button></NavLink>
   )
 }
 

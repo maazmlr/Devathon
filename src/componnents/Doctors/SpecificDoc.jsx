@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import BackButton from './BackButton';
@@ -33,7 +33,7 @@ export const SpecificDoc = () => {
     </div>
 
     <div className="card-actions justify-end mt-   	">
-      <button className="btn btn-primary">Book Appointment</button>
+     <NavLink to={`/bookDoctor/${params.id}`}><button className="btn btn-primary">Book Appointment</button> </NavLink> 
     </div>
   </div>
 </div>

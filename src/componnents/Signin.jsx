@@ -16,7 +16,6 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
-import Alerter from "./Alert";
 
 
 function Copyright(props) {
@@ -55,7 +54,6 @@ const defaultTheme = createTheme();
 export default function SignIn() {
   let navigate = useNavigate();
 
-  const [error,setError]=React.useState(false)
 
   const formik = useFormik({
     initialValues: {
@@ -64,20 +62,23 @@ export default function SignIn() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-     const value=JSON.stringify(values, null, 2)
-     axios.post('https://doctorapp-xkec.onrender.com/signin',value,{
-      headers: {
-        'Content-Type': 'application/json'
+      try {
+        const res= await axios.post('https://doctorapp-xkec.onrender.com/signin',values)
+
+        if(res.status==200){
+          localStorage.setItem("uid",res.data.message._id);
+          alert("login Successful");
+          navigate("/")
+        }
+        else{
+          alert("login failed")
+        }
+        
+      } catch (error) {
+  console.log(error)        
       }
-     }).then(res=>{
-      if(res.status===200 && !error){
-        localStorage.setItem('uid',res.data.message?._id);
-        navigate('/'); }
-     
-    
-     })
-    },
-  });
+    }
+    });
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -85,7 +86,8 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            background:"transparent",
+            paddingTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -159,7 +161,7 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 15, mb: 0 }} />
       </Container>
     </ThemeProvider>
   );

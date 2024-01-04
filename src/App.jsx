@@ -10,21 +10,25 @@ import  Signup  from './componnents/Signup'
 import UserAppointment from './componnents/Appointments/userAppointment'
 
 import { Route,RouterProvider,createBrowserRouter,createRoutesFromElements } from 'react-router-dom'
-import Alert from './componnents/Alert'
-import Alerter from './componnents/Alert'
+
 
 function App() {
   
   const router=createBrowserRouter(createRoutesFromElements(
+    <Route>
+    <Route>
+        <Route path='/signup' element={<Signup/>}/>
+    <Route path='/signin' element={<SignIn/>}/>
+    </Route>
   <Route element={<MainLayout/>}>
     <Route path='/' element={<Home/>}/>
-    <Route path='/signup' element={<Signup/>}/>
-    <Route path='/signin' element={<SignIn/>}/>
+
     <Route path='/yourApointment' element={<UserAppointment/>}/>
     <Route path='bookDoctor/:id' element={<DoctorAppointment/>}/>
 
     <Route path='doctor' element={<Doctoer/>}/>
     <Route path='doctor/:id' element={<SpecificDoc/>}/>
+  </Route>
   </Route>
     ))
   return(
