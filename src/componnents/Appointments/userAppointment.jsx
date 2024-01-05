@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react'
 import AppointmentDetails from './AppointmentDetails'
 import axios from 'axios';
 import Link from '../../Link';
+import Loader from '../Loader';
 
 
-const loader=()=>{
-  return(
-    <span className="loading loading-infinity loading-lg flex justify-center" style={{width:'20rem'}}></span>
-  )
-}
+
 
 const UserAppointment = () => {
 
@@ -38,10 +35,8 @@ const UserAppointment = () => {
   return (
     <>
   { 
-  appointments ? elements : 
- <div className='flex justify-center'>
-  {loader()}
- </div>
+  appointments ? elements : Loader()
+ 
 }  
     </>
     )

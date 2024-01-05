@@ -6,10 +6,11 @@ import BasicSelect from "./Select";
 import { NavLink, useSearchParams } from 'react-router-dom';
 import { TextField } from "@mui/material";
 import Link from "../../Link";
+import Loader from "../Loader";
 
 
 export const Doctoer = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   useEffect(() => {
     axios.get(`${Link}/doctors`).then((res) => setData(res.data));
   }, []);
@@ -17,11 +18,11 @@ export const Doctoer = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   let typeFileter=searchParams.get('type')?.toLocaleLowerCase();
 
-  const display=typeFileter ? data.filter(value=>value.category.toLowerCase()===typeFileter):data;
+  const display=typeFileter ? data?.filter(value=>value.category.toLowerCase()===typeFileter):data;
   console.log(display)
 
 
-  const elements = display.map((value) => (
+  const elements = display?.map((value) => (
    <DocCard
       key={value._id}
     
@@ -36,11 +37,14 @@ export const Doctoer = () => {
     />
   
   ));
-    let category=(new Set(data.map(value=>value.category)))
+    let category=(new Set(data?.map(value=>value.category)))
     category=[...category]
   return (
     <>
-      <div className="button-container ">
+    {
+      data ? (
+        <>
+        <div className="button-container ">
         <BasicSelect element={category}/>
       </div>
       <div
@@ -54,6 +58,12 @@ export const Doctoer = () => {
       >
            {elements}
       </div>
+      </>
+      ):
+      Loader()
+    }
+
+     
    
     </>
   );
