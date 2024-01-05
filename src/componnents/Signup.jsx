@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+import Link from '../Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -70,7 +70,7 @@ export default function SignUp() {
     onSubmit: async (values) => {
 
     try {
-      const res=await axios.post('https://doctorapp-xkec.onrender.com/signup',values);
+      const res=await axios.post(`${Link}/signup`,values);
 
       if (res.status==201){
         alert("signup successful");

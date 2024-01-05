@@ -10,6 +10,9 @@ import  Signup  from './componnents/Signup'
 import UserAppointment from './componnents/Appointments/userAppointment'
 
 import { Route,RouterProvider,createBrowserRouter,createRoutesFromElements } from 'react-router-dom'
+import { useEffect } from 'react'
+import axios from 'axios'
+import Link from './Link'
 
 
 function App() {
@@ -31,6 +34,10 @@ function App() {
   </Route>
   </Route>
     ))
+
+    useEffect(()=>{
+      axios.get(Link)
+    },[])
   return(
     <RouterProvider router={router}/>
       )

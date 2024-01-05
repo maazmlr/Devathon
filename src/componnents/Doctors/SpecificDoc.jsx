@@ -5,13 +5,14 @@ import { NavLink, useParams } from 'react-router-dom'
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import BackButton from './BackButton';
+import Link from '../../Link';
 
 
 export const SpecificDoc = () => {
     const params=useParams()
     const [data,setData]=useState({})
     useEffect(()=>{
-      axios.get(`https://doctorapp-xkec.onrender.com/oneDoc/${params.id}`)
+      axios.get(`${Link}/oneDoc/${params.id}`)
       .then(res=>setData(res.data))
     
     },[])

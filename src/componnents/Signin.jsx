@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
+import BLink from "../Link"
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -63,7 +64,7 @@ export default function SignIn() {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const res= await axios.post('https://doctorapp-xkec.onrender.com/signin',values)
+        const res= await axios.post(`${BLink}/signin`,values)
 
         if(res.status==200){
           localStorage.setItem("uid",res.data.message._id);

@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Link from '../../Link';
 
 const validationSchema = Yup.object().shape({
   fullName: Yup.string().required('Full Name is required'),
@@ -36,43 +37,39 @@ const AppointmentForm = () => {
   const [formData,setFormData]=useState([]);
   const [change ,setChange]=useState(false)
   const navigate=useNavigate()
-    useEffect(()=>{
+    useEffect( ()=>{
 
-      axios.get(`https://doctorapp-xkec.onrender.com/oneDoc/${id}`)
+      axios.get(`${Link}/oneDoc/${id}`)
       .then(res=>setData(res?.data))
 
 
     },[]);
 
-    useEffect(()=>{
-      const uid=localStorage?.getItem(("uid"));
-     
-      axios.post('http://localhost:3000/appointment',{uid,...formData},{
-        
-        headers: {
-          'Content-Type': 'application/json'
-        }}).then(res => res )
-        .catch(error => {
-          console.error('Error:', error);
-        });
+   
 
-    },[formData])
-
-    console.log(data.days?.map(v=>v));
     const days=data.days?.map((v,i)=>            <option key={i} value={v}>{v}</option>)
 
 
 
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = async (values) => {
     const postData=({...values,doctorName:data.name});
+    const uid=localStorage?.getItem(("uid"));
+    console.log("submut")
 
-    setFormData(postData);
+    
+    const response =await axios.post(`${Link}/appointment`,{uid,...postData})
+    console.log(response)
+
+    if (response.status==200){
+      alert("Appointment created successfully ");
+    }
+
+
 
 
  
 
 
-    setSubmitting(false);
   };
 
   return (

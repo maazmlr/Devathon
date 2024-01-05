@@ -5,12 +5,13 @@ import axios from "axios";
 import BasicSelect from "./Select";
 import { NavLink, useSearchParams } from 'react-router-dom';
 import { TextField } from "@mui/material";
+import Link from "../../Link";
 
 
 export const Doctoer = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("https://doctorapp-xkec.onrender.com/doctors").then((res) => setData(res.data));
+    axios.get(`${Link}/doctors`).then((res) => setData(res.data));
   }, []);
   console.log(data)
   const [searchParams, setSearchParams] = useSearchParams();
