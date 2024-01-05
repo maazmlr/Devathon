@@ -5,12 +5,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '../Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import BLink from '../Link'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -19,6 +19,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Alerter from './Alert';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Link } from '@mui/material';
 
 
 
@@ -70,7 +71,7 @@ export default function SignUp() {
     onSubmit: async (values) => {
 
     try {
-      const res=await axios.post(`${Link}/signup`,values);
+      const res=await axios.post(`${BLink}/signup`,values);
 
       if (res.status==201){
         alert("signup successful");
