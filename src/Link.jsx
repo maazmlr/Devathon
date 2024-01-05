@@ -1,3 +1,3 @@
-const Link = "http://localhost:3000";
+const Link = "https://doctorapp-xkec.onrender.com";
 
 export default Link

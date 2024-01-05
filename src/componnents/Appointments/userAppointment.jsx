@@ -3,9 +3,16 @@ import AppointmentDetails from './AppointmentDetails'
 import axios from 'axios';
 import Link from '../../Link';
 
+
+const loader=()=>{
+  return(
+    <span className="loading loading-infinity loading-lg flex justify-center" style={{width:'20rem'}}></span>
+  )
+}
+
 const UserAppointment = () => {
 
-    const [appointments,setAppointments]=useState([])
+    const [appointments,setAppointments]=useState(null)
     const uid=localStorage?.getItem('uid');
     console.log(uid)
 
@@ -30,7 +37,12 @@ const UserAppointment = () => {
 
   return (
     <>
-    {elements}
+  { 
+  appointments ? elements : 
+ <div className='flex justify-center'>
+  {loader()}
+ </div>
+}  
     </>
     )
 }
