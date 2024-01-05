@@ -6,15 +6,37 @@
 
 }
 body {
-    width: 100%;
+   width: 100%;
   height: 100%;
-  --color: #E1E1E1 !important;
-  background-color: #F3F3F3;
-  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
-      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
-  background-size: 55px 55px;
-    
+ 
+
+  /* Dark mode colors and gradient */
+  background: #121212; /* Fallback for browsers that don't support gradients */
+  background: linear-gradient(
+    135deg,
+    #eae8e80e 25%,
+    #f4f2f2 25%,
+    #f6f5f5 50%,
+    #e4e1e1 50%,
+    #fefefe 75%,
+    #fcfcfc 75%,
+    #faf8f8
+  );
+  background-size: 40px 40px;
+
+  /* Animation */
+  animation: move 4s linear infinite;
 }
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+} 
+
 
 .about-us-btn{
     border-radius: 0.625rem !important;
